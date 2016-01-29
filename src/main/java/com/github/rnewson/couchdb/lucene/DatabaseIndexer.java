@@ -363,7 +363,7 @@ public final class DatabaseIndexer implements Runnable, ResponseHandler<Void> {
                                 docs = state.converter.convert(doc, view
                                         .getDefaultSettings(), database);
                             } catch (final Exception e) {
-                                logger.warn(id + " caused " + e.getMessage());
+                                logger.warn(id + " caused " + e.getMessage(), e);
                                 continue loop;
                             }
 

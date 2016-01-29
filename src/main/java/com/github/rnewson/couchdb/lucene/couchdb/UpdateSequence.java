@@ -55,7 +55,7 @@ public abstract class UpdateSequence {
                     vector.put(node + "-" + range, node_seq.longValue());
                 }
             } catch (final OtpErlangDecodeException e) {
-                throw new IllegalArgumentException(encodedVector + " not valid.");
+                throw new IllegalArgumentException(encodedVector + " not valid.", e);
             }
         }
 
@@ -64,7 +64,7 @@ public abstract class UpdateSequence {
             try {
                 return url + "&since=" + URLEncoder.encode(since, "US-ASCII");
             } catch (UnsupportedEncodingException e) {
-                throw new Error("US-ASCII inexplicably missing.");
+                throw new Error("US-ASCII inexplicably missing.", e);
             }
         }
 

@@ -52,7 +52,7 @@ public class Utils {
         try {
             return URLEncoder.encode(path, "UTF-8");
         } catch (final UnsupportedEncodingException e) {
-            throw new Error("UTF-8 support missing!");
+            throw new Error("UTF-8 support missing!", e);
         }
     }
 

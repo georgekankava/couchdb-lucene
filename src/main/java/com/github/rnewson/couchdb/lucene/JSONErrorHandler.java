@@ -16,15 +16,18 @@
 
 package com.github.rnewson.couchdb.lucene;
 
-import com.github.rnewson.couchdb.lucene.util.ServletUtils;
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.log4j.Logger;
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.handler.ErrorHandler;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import com.github.rnewson.couchdb.lucene.util.ServletUtils;
 
 /**
  * Convert errors to CouchDB-style JSON objects.
@@ -32,6 +35,8 @@ import java.io.IOException;
  * @author rnewson
  */
 public final class JSONErrorHandler extends ErrorHandler {
+
+    private final Logger logger = Logger.getLogger(JSONErrorHandler.class.getName());
 
     public void handle(String target,
                        Request baseRequest,
@@ -47,6 +52,7 @@ public final class JSONErrorHandler extends ErrorHandler {
                         reason);
             }
         } catch (final JSONException e) {
+            logger.warn("Exception during JSON processing", e);
             response.sendError(500);
         }
 

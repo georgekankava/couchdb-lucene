@@ -170,6 +170,7 @@ public final class LuceneServlet extends HttpServlet {
         try {
             doGetInternal(req, resp);
         } catch (final JSONException e) {
+            LOG.warn("Exception during JSON processing", e);
             resp.sendError(500);
         }
     }
@@ -205,6 +206,7 @@ public final class LuceneServlet extends HttpServlet {
         try {
             doPostInternal(req, resp);
         } catch (final JSONException e) {
+            LOG.warn("Exception during JSON processing", e);
             resp.sendError(500);
         }
     }

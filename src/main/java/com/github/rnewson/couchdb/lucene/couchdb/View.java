@@ -79,7 +79,7 @@ public final class View {
             md.update(toBytes(json.optString("index")));
             return new BigInteger(1, md.digest()).toString(Character.MAX_RADIX);
         } catch (final NoSuchAlgorithmException e) {
-            throw new Error("MD5 support missing.");
+            throw new Error("MD5 support missing.", e);
         }
     }
 
@@ -90,7 +90,7 @@ public final class View {
         try {
             return str.getBytes("UTF-8");
         } catch (final UnsupportedEncodingException e) {
-            throw new Error("UTF-8 support missing.");
+            throw new Error("UTF-8 support missing.", e);
         }
     }
 
